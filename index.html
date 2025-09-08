@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="./assets/KSR_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Itim&family=Yatra+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+    <title>CSE</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+</style>
+
+    <!-- Tailwind (Play CDN) — no install needed -->
+    <script>
+      // Tailwind custom config
+      tailwind = window.tailwind || {};
+      tailwind.config = {
+        darkMode: 'media',
+        theme: {
+          extend: {
+             fontFamily: {
+             LuckyGuy: ["Luckiest Guy", 'cursive'],
+            },
+            keyframes: {
+              floaty: {
+                '0%, 100%': { transform: 'translateY(0px)' },
+                '50%': { transform: 'translateY(-10px)' }
+              },
+              shimmer: {
+                '0%': { backgroundPosition: '0% 50%' },
+                '100%': { backgroundPosition: '100% 50%' }
+              },
+            fadeInUp: {
+          '0%': { opacity: 0, transform: 'translateY(20px)' },
+          '100%': { opacity: 1, transform: 'translateY(0)' },
+           },
+          fadeInScale: {
+          '0%': { opacity: 0, transform: 'scale(0.8)' },
+          '100%': { opacity: 1, transform: 'scale(1)' },
+        },
+         neonGlow: {
+          '0%, 100%': {
+            textShadow:
+              '0 0 5px #d946ef, 0 0 10px #d946ef, 0 0 20px #a21caf, 0 0 30px #a21caf',
+            color: '#d946ef',
+            filter: 'brightness(1)'
+          },
+          '50%': {
+            textShadow:
+              '0 0 10px #ec4899, 0 0 30px #9d174d, 0 0 40px #831843, 0 0 50px #831843',
+            color: '#ec4899',
+            filter: 'brightness(1.2)'
+          }
+        },
+        flicker: {
+          '0%, 19%, 21%, 23%, 25%, 54%, 56%, 100%': {
+            opacity: '1',
+          },
+          '20%, 22%, 24%, 55%': {
+            opacity: '0.5',
+          }
+        },
+         'neon-border': {
+      '0%': { backgroundPosition: '0% 50%' },
+      '50%': { backgroundPosition: '100% 50%' },
+      '100%': { backgroundPosition: '0% 50%' },
+    },
+      },
+        animation: {
+        fadeInUp: 'fadeInUp 0.8s ease forwards',
+        fadeInUpDelay: 'fadeInUp 0.8s ease forwards 0.3s',
+        fadeInScale: 'fadeInScale 0.5s ease forwards',
+        fadeInScaleDelay: 'fadeInScale 0.5s ease forwards 0.5s',
+        floaty: 'floaty 6s ease-in-out infinite',
+        shimmer: 'shimmer 2.5s linear infinite',
+        neonGlow: 'neonGlow 3s ease-in-out infinite',
+        flicker: 'flicker 4s linear infinite',
+        neonText: 'neonGlow 3s ease-in-out infinite, flicker 4s linear infinite',
+        'neon-border': 'neon-border 6s linear infinite',
+
+      },
+    },
+            boxShadow: {
+              glow: '0 0 0 3px rgb(99 102 241 / 0.25), 0 10px 25px -5px rgb(99 102 241 / 0.25)'
+            }
+          }
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+    <!-- Splash / Loader -->
+    <div id="splash" class="fixed inset-0 z-[9999] grid place-items-center  bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-950 dark:to-neutral-900/30 text-white transition-opacity duration-700">
+      <div class="flex flex-col items-center gap-6">
+        <div class="relative">
+          <div class="h-16 w-16 rounded-full border-4 border-white/20 border-t-white animate-spin"></div>
+          <div class="absolute inset-0 grid place-items-center font-extrabold tracking-widest">CSE</div>
+        </div>
+        <p class="tracking-widest text-sm uppercase">Loading the vibes…</p>
+      </div>
+    </div>
+
+    <!-- Floating background accents -->
+    <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      <div class="absolute -top-24 -left-16 h-72 w-72 rounded-full bg-purple-500/20 blur-3xl animate-floaty"></div>
+      <div class="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-fuchsia-500/20 blur-3xl animate-floaty" style="animation-delay:1.2s"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed top-0 inset-x-0 z-50 border-b border-black/5 bg-white/70 backdrop-blur dark:bg-neutral-900/60">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+          <a href="#home" class="flex items-center gap-2">
+            <img src="./assets/KSR_logo.png" class="h-8">
+            <span class="font-extrabold">KSR COLLEGE OF ENGINEERING</span>
+          </a>
+          <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+            <a href="#home" class="hover:text-purple-600">Home</a>
+            <a href="#events" class="hover:text-purple-600">Events</a>
+            <a href="#timeline" class="hover:text-purple-600">Timeline</a>
+            <a href="#contact" class="hover:text-purple-600">Contact</a>
+            <a href="https://forms.gle/fXs5L6ogKekAxDXp6" class="ml-2 inline-flex items-center rounded-xl border border-purple-600/30 bg-purple-600/10 px-3 py-1.5 text-purple-700 hover:bg-purple-600 hover:text-white transition dark:text-purple-200 dark:hover:bg-purple-500">Register</a>
+          </nav>
+          <!-- Mobile menu button -->
+          <button id="mobileBtn" class="md:hidden inline-flex items-center justify-center rounded-lg p-2 hover:bg-black/5" aria-label="Toggle navigation">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="stroke-current"><path d="M4 6h16M4 12h16M4 18h16" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </div>
+      <!-- Mobile nav -->
+      <div id="mobileNav" class="md:hidden max-h-0 overflow-hidden transition-all duration-300">
+        <div class="mx-auto max-w-7xl px-4 pb-4 flex flex-col gap-2 text-sm font-medium">
+          <a href="#home" class="py-2">Home</a>
+          <a href="#events" class="py-2">Events</a>
+          <a href="#timeline" class="py-2">Timeline</a>
+          <a href="#contact" class="py-2">Contact</a>
+          <a href="https://forms.gle/fXs5L6ogKekAxDXp6" class="py-2">Register</a>
+        </div>
+    </div>
+</header>
+
+
+<!-- Home Section -->
+<!-- <section id="home" 
+  class="relative flex flex-col items-center justify-center min-h-screen text-white text-center 
+         bg-black/60 backdrop-blur-sm bg-center bg-contain bg-no-repeat px-4 sm:px-6 lg:px-12 py-10">
+  <div class="z-10 max-w-3xl w-full">
+    <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold fade-in leading-tight">
+      K.S.R. College of Engineering
+    </h1>
+    <h2 class="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-purple-400 mt-4 fade-in-delay">
+      National Level Symposium 2025
+    </h2>
+    <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 lg:gap-8 fade-in-delay">
+      <a href="#explore" class="relative w-full sm:w-auto max-w-[220px] p-[2px] rounded-2xl shadow-lg text-base sm:text-lg font-semibold transition transform hover:scale-110 bg-gradient-to-r from-fuchsia-500 via-purple-500 to-purple-500"> <span class="block rounded-2xl bg-white px-6 py-3 sm:px-8 sm:py-3 text-fuchsia-700 whitespace-nowrap">Explore</span> </a>
+      <a href="#register" class="relative w-full sm:w-auto max-w-[220px] p-[2px] rounded-2xl shadow-lg text-base sm:text-lg font-semibold transition transform hover:scale-110 bg-gradient-to-r from-fuchsia-500 via-purple-500 to-purple-500"> <span class="block rounded-2xl bg-white px-6 py-3 sm:px-8 sm:py-3 text-fuchsia-700 whitespace-nowrap">Register</span> </a>
+    </div>
+  </div>
+</section> -->
+
+<section id="home" 
+  class="relative flex flex-col items-center justify-center min-h-screen text-white text-center 
+         bg-black/60 backdrop-blur-sm bg-center bg-contain bg-no-repeat px-4 sm:px-6 lg:px-12 py-10 overflow-hidden">
+
+  <div class="z-10 max-w-3xl w-full">
+<h1 class="laser-text text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-neonText">
+  SPRING FEST'25 & ABLAZE'25
+</h1>
+
+    <h2 class="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-purple-400 mt-4 
+               opacity-0 animate-slideFadeUp delay-200">
+      National Level Symposium 2025
+    </h2>
+        <h2 class="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-purple-400 mt-4 
+               opacity-0 animate-slideFadeUp delay-200">
+      
+    </h2>
+    <div class="mt-10 flex flex-col sm:flex-row items-center lg:ml-10 justify-center gap-4 sm:gap-6 lg:gap-8">
+      <a href="#explore"
+         class="relative w-full sm:w-auto max-w-[220px] p-[2px] rounded-xl shadow-lg text-base sm:text-lg 
+                font-semibold transition transform hover:scale-110 bg-gradient-to-r from-fuchsia-500 via-purple-500 to-purple-500 
+                opacity-0 animate-bounceIn delay-500">
+        <span class="block rounded-xl bg-white/70 px-6 py-3 sm:px-8 sm:py-3 text-fuchsia-700 whitespace-nowrap">Explore</span>
+      </a>
+      <a href="#register"
+         class="relative w-full sm:w-auto max-w-[220px] p-[2px] rounded-xl shadow-lg text-base sm:text-lg 
+                font-semibold transition transform hover:scale-110 bg-gradient-to-r from-fuchsia-500 via-purple-500 to-purple-500 
+                opacity-0 animate-bounceIn delay-700">
+        <span class="block rounded-xl bg-white/70 px-6 py-3 sm:px-8 sm:py-3 text-fuchsia-700 whitespace-nowrap">Register</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Hero -->
+    <section id="explore" class="relative pt-28 overflow-hidden h-screen">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid items-center gap-10 lg:grid-cols-2">
+      
+      <!-- LEFT -->
+      <div class="space-y-4">
+        <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">
+          <span class="bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent animate-shimmer bg-[length:200%_auto] inline-block animate-splitFade">
+            KSR COLLEGE OF ENGINEERING
+          </span>
+        </h1>
+        <h6 class="text-sm sm:text-base md:text-lg lg:text-xl text-purple-400 mt-2 opacity-0 animate-slideBlur">
+          Presents you,
+        </h6>
+
+        <h1 class="laser-text sm:text-base md:text-2xl lg:text-5xl font-bold leading-tight animate-laserGlow">
+          SPRING FEST'25 & ABLAZE'25
+        </h1>
+
+        <p class="mt-4 text-base text-neutral-600 dark:text-neutral-300 max-w-prose opacity-0 animate-fadeStagger">
+          Three days <span class="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent animate-shimmer bg-[length:200%_auto]">(October 1,2 & 3)</span>.
+          Tons of tech & non-tech events. Win prizes, meet people, and flex your skills.  
+          We’ve packed this with animations so it feels alive.
+        </p>
+
+        <div class="mt-6 flex gap-3 animate-buttonDrop">
+          <a id="register" href="#events"
+             class="inline-flex items-center rounded-xl bg-purple-600 px-5 py-3 text-white font-semibold shadow-glow hover:scale-[1.05] active:scale-[0.97] transition">
+            Explore Events
+          </a>
+          <a href="#timeline"
+             class="inline-flex items-center rounded-xl border border-neutral-300 px-5 py-3 font-semibold hover:bg-black/5 dark:border-neutral-700">
+            See Timeline
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="relative mx-auto w-full max-w-md font-serif space-y-6">
+        <div class="absolute -inset-6 -z-10 rounded-3xl bg-gradient-to-tr from-purple-800/30 via-purple-500/20 to-purple-400/20 blur-2xl"></div>
+
+        <div class="origin-center rotate-[-3deg] translate-y-2 rounded-2xl border-2 border-purple-700/40 bg-white/70 p-6 shadow-lg animate-cardFlip">
+          <p class="text-xs uppercase tracking-wide text-purple-800 font-semibold">Featured</p>
+          <h3 class="mt-2 text-2xl font-extrabold text-purple-900">Paper Presentation · Quests · Workshops</h3>
+          <p class="mt-2 text-sm text-neutral-700 leading-relaxed">Show up with your squad and ship something wild. We stan good demos.</p>
+        </div>
+
+        <div class="origin-center rotate-[3deg] -translate-y-2 rounded-2xl border-2 border-purple-700/40 bg-white/90 p-6 shadow-lg animate-cardFlip delay-300">
+          <p class="text-xs uppercase tracking-wide text-purple-800 font-semibold">Also Fun</p>
+          <h3 class="mt-2 text-2xl font-extrabold text-purple-900">Treasure Hunt · Filmography · Photography</h3>
+          <p class="mt-2 text-sm text-neutral-700 leading-relaxed">Not just code — come vibe, compete, and make memories.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+    <!-- Events -->
+    <section id="events" class="py-20">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="reveal text-center">
+          <h2 class="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-purple-400 mt-4 
+               opacity-0 animate-slideFadeUp delay-200">
+      EVENTS
+    </h2>
+          <p class="mt-2 text-neutral-600 dark:text-neutral-300">Technical & Non‑Technical</p>
+        </div>
+
+        <!-- Technical -->
+        <div class="mt-10 reveal">
+          <h3 class="text-xl font-bold">Technical</h3>
+          <div class="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+<article class="neon-card relative rounded-2xl p-[3px] overflow-hidden items-center">
+  <div class="card-inner relative rounded-xl bg-black p-6 shadow-lg items-center">
+    <div class="flex items-center justify-center">
+      <h4 class="text-lg font-semibold">Idea Quest (Project Presentation):</h4>
+      <span class="event-badge px-3 py-1 rounded-md text-xs font-medium bg-purple-600/10 text-purple-700">Team</span>
+    </div>
+    <p class="mt-2 text-sm text-neutral-600">
+      Participants present innovative projects or research ideas. Judged on originality, feasibility & impact.
+    </p>
+  </div>
+</article> 
+
+<article class="neon-card relative rounded-2xl p-[3px] overflow-hidden items-center">
+  <div class="card-inner relative rounded-xl bg-black p-6 shadow-lg items-center">
+    <div class="flex items-center justify-center">
+      <h4 class="text-lg font-semibold">Geek Quest (Technical Quiz):</h4>
+      <span class="event-badge px-3 py-1 rounded-md text-xs font-medium bg-purple-600/10 text-purple-700">Solo/Team</span>
+    </div>
+    <p class="mt-2 text-sm text-neutral-600">
+      A fast-paced quiz testing participants’ knowledge in computing and engineering through multiple rounds.
+    </p>
+  </div>
+</article>
+
+<article class="neon-card relative rounded-2xl p-[3px] overflow-hidden items-center">
+  <div class="card-inner relative rounded-xl bg-black p-6 shadow-lg items-center">
+    <div class="flex items-center justify-center">
+                <h4 class="text-lg font-semibold">Debug Duel (Debugging Competition):</h4>
+<span class="event-badge px-3 py-1 rounded-md text-xs font-medium bg-purple-600/10 text-purple-700">Solo/Team</span>              </div>
+              <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">A timed contest where participants identify and fix bugs in provided code. It challenges coding skills, logical reasoning, and debugging speed.</p>
+</article>
+
+<article class="neon-card relative rounded-2xl p-[3px] overflow-hidden items-center">
+  <div class="card-inner relative rounded-xl bg-black p-6 shadow-lg items-center">
+    <div class="flex items-center justify-center">
+      <h4 class="text-lg font-semibold">UI Remix (Design Recreation Challenge): </h4>
+<span class="event-badge px-3 py-1 rounded-md text-xs font-medium bg-purple-600/10 text-purple-700">Solo/Team</span>          </div>
+            <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Participants recreate a given UI design from a provided source, focusing on pixel-perfect accuracy and tool proficiency. Judged on design fidelity and completeness.</p>
+</article>
+</div>
+</div>
+
+        <!-- Non-Technical -->
+        <div class="mt-14 reveal">
+          <h3 class="text-xl font-bold">Non‑Technical</h3>
+          <div class="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+<article class="neon-card relative rounded-2xl p-[3px] overflow-hidden items-center">
+  <div class="card-inner relative rounded-xl bg-black p-6 shadow-lg items-center">
+    <div class="flex items-center justify-center">
+      <h4 class="text-lg font-semibold">Treasure Hunt (Crack Clues):</h4>
+<span class="event-badge px-3 py-1 rounded-md text-xs font-medium bg-purple-600/10 text-purple-700">Solo/Team</span>    </div>
+    <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Participants solve a series of creative clues and puzzles that lead to hidden treasures. This engaging activity tests problem-solving, teamwork, and observation skills.
+</p>
+            </article>
+
+            <article class="neon-card relative rounded-2xl p-[3px] overflow-hidden items-center">
+  <div class="card-inner relative rounded-xl bg-black p-6 shadow-lg items-center">
+    <div class="flex items-center justify-center">
+                <h4 class="text-lg font-semibold">Guess the Personality (Logo Finder):
+</h4>
+<span class="event-badge px-3 py-1 rounded-md text-xs font-medium bg-purple-600/10 text-purple-700">Solo/Team</span>              </div>
+              <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">A fun quiz where participants identify famous personalities or brands based on logos or symbolic representations. It sharpens recognition and quick thinking.
+</p>
+            </article>
+
+            <article class="neon-card relative rounded-2xl p-[3px] overflow-hidden items-center">
+  <div class="card-inner relative rounded-xl bg-black p-6 shadow-lg items-center">
+    <div class="flex items-center justify-between">
+                <h4 class="text-lg font-semibold">Filmography<br>(Short Videos):
+</h4>
+<span class="event-badge px-3 py-1 rounded-md text-xs font-medium bg-purple-600/10 text-purple-700">Solo/Team</span>              </div>
+              <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Contestants answer questions or identify movies, actors, or directors based on film-related clues. This event celebrates cinema knowledge and trivia skills.
+
+</p>
+            </article>
+            <article class="neon-card relative rounded-2xl p-[3px] overflow-hidden items-center">
+  <div class="card-inner relative rounded-xl bg-black p-6 shadow-lg items-center">
+    <div class="flex items-center justify-between">
+                <h4 class="text-lg font-semibold">Photograph Content:
+
+</h4>
+<span class="event-badge px-3 py-1 rounded-md text-xs font-medium bg-purple-600/10 text-purple-700">Solo/Team</span>              </div>
+              <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">Participants analyze and describe given photographs or create stories based on images. This event enhances observation, creativity, and descriptive abilities.
+
+</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+<section id="timeline"
+         class="relative w-screen h-screen overflow-hidden flex items-center justify-center text-white text-center">
+  <!-- background element (fills viewport) -->
+  <div class="hero-aurora" aria-hidden="true"></div>      
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-10">
+        <div class="reveal text-center">
+          <h2 class="text-3xl sm:text-4xl font-extrabold">3‑Day Timeline</h2>
+          <p class="mt-2 text-neutral-600 dark:text-neutral-300">High level schedule. Exact slots will be mailed to participants.</p>
+        </div>
+        <div class="mt-12 grid gap-10 lg:grid-cols-3">
+          <!-- Day 1 -->
+          <div class="reveal rounded-2xl border border-black/5 bg-white p-6 shadow-sm dark:bg-neutral-900">
+            <h3 class="text-xl font-bold">Day 1 — Kickoff</h3>
+            <ol class="mt-4 space-y-4">
+              <li class="flex gap-3">
+                <div class="mt-1 h-2 w-2 rounded-full bg-purple-600"></div>
+                <div><p class="font-semibold">09:30 · Inauguration</p><p class="text-sm text-neutral-600 dark:text-neutral-300">Chief guest address & overview</p></div>
+              </li>
+              <li class="flex gap-3">
+                <div class="mt-1 h-2 w-2 rounded-full bg-purple-600"></div>
+                <div><p class="font-semibold">11:00 · Keynote</p><p class="text-sm text-neutral-600 dark:text-neutral-300">Future of AI & Startups</p></div>
+              </li>
+              <li class="flex gap-3">
+                <div class="mt-1 h-2 w-2 rounded-full bg-purple-600"></div>
+                <div><p class="font-semibold">13:30 · Paper Presentation</p><p class="text-sm text-neutral-600 dark:text-neutral-300">Parallel tracks</p></div>
+              </li>
+            </ol>
+          </div>
+          <!-- Day 2 -->
+          <div class="reveal rounded-2xl border border-black/5 bg-white p-6 shadow-sm dark:bg-neutral-900">
+            <h3 class="text-xl font-bold">Day 2 — Build Mode</h3>
+            <ol class="mt-4 space-y-4">
+              <li class="flex gap-3">
+                <div class="mt-1 h-2 w-2 rounded-full bg-fuchsia-600"></div>
+                <div><p class="font-semibold">09:00 · Hackathon Starts</p><p class="text-sm text-neutral-600 dark:text-neutral-300">Theme reveal & coding</p></div>
+              </li>
+              <li class="flex gap-3">
+                <div class="mt-1 h-2 w-2 rounded-full bg-fuchsia-600"></div>
+                <div><p class="font-semibold">12:30 · Fun Events</p><p class="text-sm text-neutral-600 dark:text-neutral-300">Treasure Hunt / IPL Auction</p></div>
+              </li>
+              <li class="flex gap-3">
+                <div class="mt-1 h-2 w-2 rounded-full bg-fuchsia-600"></div>
+                <div><p class="font-semibold">16:00 · CodeSprint Finals</p><p class="text-sm text-neutral-600 dark:text-neutral-300">On‑site showdown</p></div>
+              </li>
+            </ol>
+          </div>
+          <!-- Day 3 -->
+          <div class="reveal rounded-2xl border border-black/5 bg-white p-6 shadow-sm dark:bg-neutral-900">
+            <h3 class="text-xl font-bold">Day 3 — Showcase</h3>
+            <ol class="mt-4 space-y-4">
+              <li class="flex gap-3">
+                <div class="mt-1 h-2 w-2 rounded-full bg-rose-600"></div>
+                <div><p class="font-semibold">10:00 · Demo Day</p><p class="text-sm text-neutral-600 dark:text-neutral-300">Hackathon presentations</p></div>
+              </li>
+              <li class="flex gap-3">
+                <div class="mt-1 h-2 w-2 rounded-full bg-rose-600"></div>
+                <div><p class="font-semibold">12:00 · Reels Screening</p><p class="text-sm text-neutral-600 dark:text-neutral-300">Top entries on the big screen</p></div>
+              </li>
+              <li class="flex gap-3">
+                <div class="mt-1 h-2 w-2 rounded-full bg-rose-600"></div>
+                <div><p class="font-semibold">16:30 · Valedictory & Prizes</p><p class="text-sm text-neutral-600 dark:text-neutral-300">Winners announced</p></div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact / Footer -->
+    <footer id="contact" class="border-t border-black/5">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+        <div class="reveal grid gap-8 md:grid-cols-3">
+          <div>
+            <h4 class="font-extrabold text-xl">Department of CSE</h4>
+            <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-300">KSR COLLEGE OF ENGINEERING, Tiruchengode, Namakkal</p>
+            <p class="mt-1 text-sm text-neutral-600 dark:text-neutral-300">National Level Technical Symposium 2025</p>
+          </div>
+          <div>
+            <h5 class="font-semibold">Quick Links</h5>
+            <ul class="mt-2 space-y-2 text-sm">
+              <li><a href="#events" class="hover:text-purple-600">Events</a></li>
+              <li><a href="#timeline" class="hover:text-purple-600">Timeline</a></li>
+              <li><a href="#home" class="hover:text-purple-600">About</a></li>
+              <li><a href="#register" class="hover:text-purple-600">Register</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5 class="font-semibold">Contact</h5>
+            <ul class="mt-2 space-y-3 text-sm">
+              <li class="flex items-center gap-2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="stroke-current"><path d="M4 6l8 6 8-6" stroke-width="2"/><path d="M4 6h16v12H4z" stroke-width="2"/></svg>
+                <a href="mailto:csesympo@college.edu" class="hover:text-purple-600">csesympo@college.edu</a>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm12.25 3.75h-1.5a.75.75 0 0 0 0 1.5h1.5a.75.75 0 0 0 0-1.5ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z"/></svg>
+                <a href="https://instagram.com/cse.sympo" target="_blank" rel="noreferrer" class="hover:text-purple-600">@cse.sympo</a>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 15l5.19-3L10 9v6z"/><path d="M21 8a5 5 0 0 0-5-5H8a5 5 0 0 0-5 5v8a5 5 0 0 0 5 5h8a5 5 0 0 0 5-5V8z"/></svg>
+                <a href="https://youtube.com/@csesympo" target="_blank" rel="noreferrer" class="hover:text-purple-600">YouTube</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
+          <p>© 2025 Dept Symposium • All rights reserved</p>
+          <a href="#home" class="inline-flex items-center gap-2 rounded-xl border px-3 py-1 hover:bg-black/5">Back to top ↑</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Tiny JS for interactions -->
+    <script>
+      // Splash fade out
+      window.addEventListener('load', () => {
+        const splash = document.getElementById('splash');
+        setTimeout(() => {
+          splash.style.opacity = '0';
+          setTimeout(() => splash.remove(), 700);
+        }, 600); 
+      });
+
+      // Mobile nav toggle
+      const mobileBtn = document.getElementById('mobileBtn');
+      const mobileNav = document.getElementById('mobileNav');
+      mobileBtn?.addEventListener('click', () => {
+        const open = mobileNav.style.maxHeight && mobileNav.style.maxHeight !== '0px';
+        mobileNav.style.maxHeight = open ? '0px' : mobileNav.scrollHeight + 'px';
+      });
+
+      // Reveal on scroll
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
+        }
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    </script>
+  </body>
+</html>

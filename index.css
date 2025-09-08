@@ -1,0 +1,324 @@
+
+  .hero-aurora {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(
+        ellipse at 20% 30%,
+        rgba(138, 43, 226, 0.8) 0%,
+        rgba(138, 43, 226, 0) 60%
+      ),
+      radial-gradient(
+        ellipse at 80% 50%,
+        rgba(195, 0, 255, 0.7) 0%,
+        rgba(0, 191, 255, 0) 70%
+      ),
+      radial-gradient(
+        ellipse at 50% 80%,
+        rgba(19, 4, 34, 0.6) 0%,
+        rgba(8, 12, 8, 0) 65%
+      ),
+      linear-gradient(135deg, #000000 0%, #0c0722 100%);
+    background-blend-mode: overlay, screen, hard-light;
+    overflow: hidden;
+    animation: aurora-drift 25s infinite alternate ease-in-out;
+  }
+  .hero-aurora::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.02) 0px,
+        rgba(255, 255, 255, 0.02) 1px,
+        transparent 1px,
+        transparent 40px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.03) 0px,
+        rgba(255, 255, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 60px
+      );
+    animation: grid-shift 20s linear infinite;
+  }
+
+  .hero-aurora::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at center,
+      transparent 70%,
+      rgba(10, 5, 32, 0.9) 100%
+    );
+    animation: aurora-pulse 8s infinite alternate;
+  }
+
+  @keyframes aurora-drift {
+    0% {
+      background-position: 0% 0%, 0% 0%, 0% 0%;
+      filter: hue-rotate(0deg) brightness(1);
+    }
+    50% {
+      background-position: -10% -5%, 5% 10%, 0% 15%;
+      filter: hue-rotate(0deg) brightness(1.2);
+    }
+    100% {
+      background-position: 5% 10%, -10% -5%, 15% 0%;
+      filter: hue-rotate(10deg) brightness(1);
+    }
+  }
+
+  @keyframes grid-shift {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-50%, -50%); }
+  }
+
+  @keyframes aurora-pulse {
+    0% { opacity: 0.8; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.05); }
+    100% { opacity: 0.8; transform: scale(1); }
+  }
+
+
+body{
+  font-family: "Yatra One", system-ui;
+  font-style: normal;
+  overflow-x: hidden;
+}
+#home {
+  background: url('./assets/penguin.png') center center repeat-x;
+  background-size: contain;   
+}
+
+@media (max-width: 640px) {
+  #home {
+    background-size: 100%;
+    background-size: cover;
+  }
+}
+
+
+.fade-in {
+  animation: fadeInUp 1.5s ease-out forwards;
+  opacity: 0;
+}
+.fade-in-delay {
+  animation: fadeInUp 2s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  0% { transform: translateY(40px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.pulse-btn {
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+@keyframes slideFadeDown {
+  0% { opacity: 0; transform: translateY(-40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideFadeUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceIn {
+  0% { opacity: 0; transform: scale(0.5); }
+  60% { opacity: 1; transform: scale(1.1); }
+  100% { opacity:1; transform: scale(1); }
+}
+
+/* Animation utilities */
+.animate-slideFadeDown { animation: slideFadeDown 1s ease forwards; }
+.animate-slideFadeUp { animation: slideFadeUp 1s ease forwards; }
+.animate-bounceIn { animation: bounceIn 1s ease forwards; }
+
+/* Delay classes */
+.delay-200 { animation-delay: 0.2s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-700 { animation-delay: 0.7s; }
+
+.laser-text {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    #ffffff 20%,
+    #a855f7 40%,
+    #9333ea 50%,
+    #a855f7 60%,
+    #ffffff 80%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: laser-scan 3s linear infinite;
+}
+
+@keyframes laser-scan {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.animate-shimmer { animation: shimmer 3s linear infinite; }
+
+@keyframes splitFade {
+  0% { opacity: 0; transform: translateY(20px) scale(0.95); letter-spacing: 0.2em; }
+  100% { opacity: 1; transform: translateY(0) scale(1); letter-spacing: normal; }
+}
+.animate-splitFade { animation: splitFade 1.2s ease-out forwards; }
+
+@keyframes slideBlur {
+  0% { opacity: 0; transform: translateX(-40px); filter: blur(6px); }
+  100% { opacity: 1; transform: translateX(0); filter: blur(0); }
+}
+.animate-slideBlur { animation: slideBlur 1s ease-out 0.5s forwards; }
+
+@keyframes laserGlow {
+  0%, 100% { text-shadow: 0 0 5px #a200ff, 0 0 20px #6f00ff; }
+  50% { text-shadow: 0 0 20px #d400ff83, 0 0 40px #a200ff8a, 0 0 60px #7509a779; }
+}
+.animate-laserGlow { animation: laserGlow 2s infinite alternate; }
+
+@keyframes fadeStagger {
+  0% { opacity: 0; transform: translateY(15px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeStagger { animation: fadeStagger 1s ease-out 0.8s forwards; }
+
+@keyframes buttonDrop {
+  0% { opacity: 0; transform: translateY(-20px) scale(0.9); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-buttonDrop { animation: buttonDrop 1s ease-out 1.2s forwards; }
+
+@keyframes cardFlip {
+  0% { transform: rotateY(90deg) scale(0.9); opacity: 0; }
+  100% { transform: rotateY(0) scale(1); opacity: 1; }
+}
+.animate-cardFlip { animation: cardFlip 1s ease-out forwards; }
+
+/* Title animations */
+@keyframes titleStagger {
+  0% { opacity: 0; transform: translateY(30px) scale(0.95); letter-spacing: 0.2em; }
+  100% { opacity: 1; transform: translateY(0) scale(1); letter-spacing: normal; }
+}
+.animate-titleStagger { animation: titleStagger 1.2s ease-out forwards; }
+
+@keyframes subFade {
+  0% { opacity: 0; transform: translateY(15px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-subFade { animation: subFade 1s ease-out 0.6s forwards; }
+
+/* Card entry */
+.event-card {
+  transform: translateY(40px) rotateX(10deg);
+  opacity: 0;
+  animation: cardEntry 0.8s ease-out forwards;
+}
+.event-card:nth-child(1) { animation-delay: 0.2s; }
+.event-card:nth-child(2) { animation-delay: 0.4s; }
+.event-card:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes cardEntry {
+  0% { opacity: 0; transform: translateY(40px) rotateX(10deg); }
+  100% { opacity: 1; transform: translateY(0) rotateX(0); }
+}
+
+.event-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem; /* match rounded-2xl */
+  padding: 2px;
+  background: linear-gradient(270deg, #9333ea, #ec4899, #f43f5e, #9333ea);
+  background-size: 300% 300%;
+  animation: moveBorder 6s linear infinite;
+  z-index: -1;
+}
+
+/* Inner card to mask the content */
+.event-card > div {
+  position: relative;
+  border-radius: 1rem;
+  background: inherit;
+  z-index: 1;
+}
+
+/* Gradient motion */
+@keyframes moveBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* CSS: animated neon gradient border */
+/* Put this in your global CSS or inside a <style> block */
+.neon-card {
+  /* gradient is on the outer box (acts like the border) */
+  background: linear-gradient(90deg, #7c3aed, #c648ec, #9e16f9, #7c3aed);
+  background-size: 200% 200%;
+  animation: neon-move 5s linear infinite;
+  /* slight glow */
+  box-shadow: 0 6px 18px rgba(124,58,237,0.12), 0 2px 6px rgba(0,0,0,0.12);
+}
+
+/* inner white panel covers the center so only a "frame" shows */
+.neon-card .card-inner {
+  border-radius: 0.75rem; /* rounded-xl (inner slightly smaller than outer rounded-2xl) */
+  /* keep above the animated background */
+  z-index: 2;
+}
+
+/* motion for the gradient */
+@keyframes neon-move {
+  0%   { background-position:   0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position:   0% 50%; }
+}
+
+/* hover: speed up the gradient and add a neon glow */
+.neon-card:hover {
+  animation-duration: 1.6s; /* faster on hover */
+  filter: drop-shadow(0 10px 30px rgba(124,58,237,0.25));
+}
+
+/* optional: subtle inner border (keeps content separated) */
+.neon-card .card-inner {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+/* If you want different palettes for tech vs non-tech, toggle classes */
+/* Example: .neon-card.tech and .neon-card.nontech */
+.neon-card.tech { background: linear-gradient(90deg,#7c3aed,#a78bfa,#ec4899,#7c3aed); }
+.neon-card.nontech { background: linear-gradient(90deg,#fb7185,#f97316,#f59e0b,#fb7185); }
+
+
+
+
+
+
