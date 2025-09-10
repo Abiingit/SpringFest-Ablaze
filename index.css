@@ -663,6 +663,30 @@ strong {
   .pump-card.aos-animate { animation: none; }
 }
 
+@keyframes titleWave {
+  0% {
+    transform: translateY(-40px) scale(0.9);
+    opacity: 0;
+    letter-spacing: -0.05em;
+  }
+  40% {
+    transform: translateY(0) scale(1.1);
+    opacity: 1;
+    letter-spacing: 0.05em;
+  }
+  70% {
+    transform: translateY(-5px) scale(1.05);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    letter-spacing: 0em;
+  }
+}
+
+.animate-titleWave {
+  animation: titleWave 1.6s ease-in-out forwards infinite;
+}
+
 
 
 
