@@ -609,6 +609,62 @@ strong {
   }
 }
 
+/* event cards */
+/* Base 3D flip */
+.flip-card {
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  transform-style: preserve-3d;
+}
+
+.flip-card-front,
+.flip-card-back {
+  backface-visibility: hidden;
+}
+
+/* Back side hidden until flipped */
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* Desktop: hover flip */
+@media (min-width: 768px) {
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+}
+
+/* Mobile: flip on "flipped" class (added by JS) */
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* CSS: pump animation applied only after AOS adds .aos-animate */
+@keyframes pump {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.08); }
+}
+
+/* make sure the pump scales only (rotation is applied on parent) */
+.pump-card {
+  transform-origin: center center;
+}
+
+/* AOS adds the class `aos-animate` when the element has animated;
+   we use that to *start* the pumping after the flip ends */
+.pump-card.aos-animate {
+  animation: pump 1.6s ease-in-out infinite;
+}
+
+/* accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .pump-card.aos-animate { animation: none; }
+}
+
+
+
 
 
 
