@@ -1,4 +1,9 @@
-
+body{
+  font-family: "Yatra One", system-ui;
+  font-style: normal;
+  overflow-x: hidden;
+  background-color: #0c0722;
+}
   .hero-aurora {
     position: absolute;
     inset: 0;
@@ -85,12 +90,6 @@
     100% { opacity: 0.8; transform: scale(1); }
   }
 
-
-body{
-  font-family: "Yatra One", system-ui;
-  font-style: normal;
-  overflow-x: hidden;
-}
 #home {
   background: url('./assets/penguin.png') center center repeat-x;
   background-size: contain;   
@@ -142,12 +141,10 @@ body{
   100% { opacity:1; transform: scale(1); }
 }
 
-/* Animation utilities */
 .animate-slideFadeDown { animation: slideFadeDown 1s ease forwards; }
 .animate-slideFadeUp { animation: slideFadeUp 1s ease forwards; }
 .animate-bounceIn { animation: bounceIn 1s ease forwards; }
 
-/* Delay classes */
 .delay-200 { animation-delay: 0.2s; }
 .delay-500 { animation-delay: 0.5s; }
 .delay-700 { animation-delay: 0.7s; }
@@ -234,7 +231,6 @@ body{
 }
 .animate-subFade { animation: subFade 1s ease-out 0.6s forwards; }
 
-/* Card entry */
 .event-card {
   transform: translateY(40px) rotateX(10deg);
   opacity: 0;
@@ -261,7 +257,6 @@ body{
   z-index: -1;
 }
 
-/* Inner card to mask the content */
 .event-card > div {
   position: relative;
   border-radius: 1rem;
@@ -269,53 +264,138 @@ body{
   z-index: 1;
 }
 
-/* Gradient motion */
 @keyframes moveBorder {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* CSS: animated neon gradient border */
-/* Put this in your global CSS or inside a <style> block */
 .neon-card {
-  /* gradient is on the outer box (acts like the border) */
   background: linear-gradient(90deg, #7c3aed, #c648ec, #9e16f9, #7c3aed);
   background-size: 200% 200%;
   animation: neon-move 5s linear infinite;
-  /* slight glow */
   box-shadow: 0 6px 18px rgba(124,58,237,0.12), 0 2px 6px rgba(0,0,0,0.12);
 }
 
-/* inner white panel covers the center so only a "frame" shows */
 .neon-card .card-inner {
-  border-radius: 0.75rem; /* rounded-xl (inner slightly smaller than outer rounded-2xl) */
-  /* keep above the animated background */
+  border-radius: 0.75rem; 
   z-index: 2;
 }
 
-/* motion for the gradient */
 @keyframes neon-move {
   0%   { background-position:   0% 50%; }
   50%  { background-position: 100% 50%; }
   100% { background-position:   0% 50%; }
 }
 
-/* hover: speed up the gradient and add a neon glow */
 .neon-card:hover {
-  animation-duration: 1.6s; /* faster on hover */
+  animation-duration: 1.6s; 
   filter: drop-shadow(0 10px 30px rgba(124,58,237,0.25));
 }
 
-/* optional: subtle inner border (keeps content separated) */
 .neon-card .card-inner {
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
 }
 
-/* If you want different palettes for tech vs non-tech, toggle classes */
-/* Example: .neon-card.tech and .neon-card.nontech */
 .neon-card.tech { background: linear-gradient(90deg,#7c3aed,#a78bfa,#ec4899,#7c3aed); }
 .neon-card.nontech { background: linear-gradient(90deg,#fb7185,#f97316,#f59e0b,#fb7185); }
+
+.dept-heading {
+  --chars: 46;                /* fallback, JS will override */
+  --typing-duration: 3s;      /* adjust typing speed here */
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 0;               /* animated to show characters */
+  transform: translateY(20px);
+  opacity: 0;
+  position: relative;
+  /* three animations:
+     1) typing (controls max-width with steps -> per-char)
+     2) slideUp (quick slide-up & fade)
+     3) glow (starts after typing finishes)
+  */
+  animation:
+    typing var(--typing-duration) steps(var(--chars), end) infinite forwards,
+    slideUp 0.6s cubic-bezier(.2,.8,.2,1) forwards,
+    glow 2s ease-in-out calc(var(--typing-duration) + 0.15s) infinite alternate;
+  /* keep it above background visuals if needed */
+  z-index: 2;
+}
+
+/* CURSOR (pseudo element) */
+.dept-heading::after {
+  content: "";
+  display: inline-block;
+  vertical-align: bottom;
+  width: 2px;
+  height: 1.05em;
+  margin-left: .45rem;
+  background: currentColor;
+  /* blink while typing, then hide via hideCursor which runs after typing duration */
+  animation:
+    blink .8s steps(2, end) infinite,
+    hideCursor .001s linear var(--typing-duration) forwards;
+}
+
+/* Keyframes */
+@keyframes typing {
+  from { max-width: 0; }
+  to   { max-width: calc(var(--chars) * 1ch); } 
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);      opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%,100% { opacity: 0; }
+}
+
+/* hideCursor runs instantly at the end of typing (because of the delay),
+   and sets visibility to hidden so the blinking stops visually */
+@keyframes hideCursor {
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* gentle neon glow after typing */
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 6px rgba(168,85,247,0.55),
+                 0 0 12px rgba(147,51,234,0.30);
+  }
+  100% {
+    text-shadow: 0 0 18px rgba(192,132,252,0.9),
+                 0 0 30px rgba(168,85,247,0.55);
+  }
+}
+
+/* accessibility: reduce motion falls back to no animation */
+@media (prefers-reduced-motion: reduce) {
+  .dept-heading {
+    animation: none !important;
+    max-width: 100% !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .dept-heading::after { display: none !important; }
+}
+
+/* optional tiny mobile tweak if you want even smaller text on very small screens */
+@media (max-width: 320px) {
+  .dept-heading { 
+  font-size: 0.95rem;
+ }
+}
+
+
+
+
+
+
+
 
 
 

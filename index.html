@@ -18,7 +18,7 @@
       // Tailwind custom config
       tailwind = window.tailwind || {};
       tailwind.config = {
-        darkMode: 'media',
+        
         theme: {
           extend: {
              fontFamily: {
@@ -91,9 +91,10 @@
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
-    <!-- Splash / Loader -->
-    <div id="splash" class="fixed inset-0 z-[9999] grid place-items-center  bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-950 dark:to-neutral-900/30 text-white transition-opacity duration-700">
+<body class="bg-black  bg-neutral-950 text-neutral-100">
+
+<!--Splash Screen-->
+<div id="splash" class="fixed inset-0 z-[9999] grid place-items-center bg-gradient-to-b/70 from-neutral-50/70 to-white from-neutral-950/70 to-neutral-900/30/70 text-white transition-opacity duration-700">
       <div class="flex flex-col items-center gap-6">
         <div class="relative">
           <div class="h-16 w-16 rounded-full border-4 border-white/20 border-t-white animate-spin"></div>
@@ -101,20 +102,18 @@
         </div>
         <p class="tracking-widest text-sm uppercase">Loading the vibes…</p>
       </div>
-    </div>
-
-    <!-- Floating background accents -->
-    <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+</div>
+<div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       <div class="absolute -top-24 -left-16 h-72 w-72 rounded-full bg-purple-500/20 blur-3xl animate-floaty"></div>
       <div class="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-fuchsia-500/20 blur-3xl animate-floaty" style="animation-delay:1.2s"></div>
-    </div>
+</div>
 
-    <!-- Header -->
-    <header class="fixed top-0 inset-x-0 z-50 border-b border-black/5 bg-white/70 backdrop-blur dark:bg-neutral-900/60">
+<!--Header-->
+<header class="fixed top-0 inset-x-0 z-50 border-b border-black/5 backdrop-blur bg-black-600/90">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
           <a href="#home" class="flex items-center gap-2">
-            <img src="./assets/KSR_logo.png" class="h-8">
+            <img src="./assets/KSR_logo.png" class="h-8 brightness-50">
             <span class="font-extrabold">KSR COLLEGE OF ENGINEERING</span>
           </a>
           <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
@@ -142,7 +141,6 @@
     </div>
 </header>
 
-
 <!-- Home Section -->
 <!-- <section id="home" 
   class="relative flex flex-col items-center justify-center min-h-screen text-white text-center 
@@ -160,43 +158,52 @@
     </div>
   </div>
 </section> -->
-
 <section id="home" 
   class="relative flex flex-col items-center justify-center min-h-screen text-white text-center 
-         bg-black/60 backdrop-blur-sm bg-center bg-contain bg-no-repeat px-4 sm:px-6 lg:px-12 py-10 overflow-hidden">
+         bg-black/60 backdrop-blur-sm bg-cover bg-center bg-no-repeat 
+         px-4 sm:px-6 lg:px-12 py-10 overflow-hidden">
 
-  <div class="z-10 max-w-3xl w-full">
-<h1 class="laser-text text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-neonText">
-  SPRING FEST'25 & ABLAZE'25
-</h1>
+  <div class="z-10 max-w-4xl w-full">
+    <h1 class="laser-text text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-neonText px-2">
+      SPRING FEST'25 & ABLAZE'25
+    </h1>
+    <h2
+  class="dept-heading text-center 
+         text-base sm:text-xl md:text-2xl lg:text-3xl text-purple-400 mt-6 
+         px-2"
+  style="--chars:46; --typing-duration:4s;"
+>
+  Department of Computer Science and Engineering
+</h2>
 
-    <h2 class="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-purple-400 mt-4 
+
+    <!-- Animated Sub Heading -->
+    <h2 class="text-base sm:text-xl md:text-2xl lg:text-3xl text-purple-400 mt-4 
                opacity-0 animate-slideFadeUp delay-200">
       National Level Symposium 2025
     </h2>
-        <h2 class="text-lg sm:text-2xl md:text-3xl lg:text-4xl text-purple-400 mt-4 
-               opacity-0 animate-slideFadeUp delay-200">
-      
-    </h2>
-    <div class="mt-10 flex flex-col sm:flex-row items-center lg:ml-10 justify-center gap-4 sm:gap-6 lg:gap-8">
+
+    <!-- Buttons -->
+    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 lg:gap-8">
       <a href="#explore"
          class="relative w-full sm:w-auto max-w-[220px] p-[2px] rounded-xl shadow-lg text-base sm:text-lg 
                 font-semibold transition transform hover:scale-110 bg-gradient-to-r from-fuchsia-500 via-purple-500 to-purple-500 
                 opacity-0 animate-bounceIn delay-500">
-        <span class="block rounded-xl bg-white/70 px-6 py-3 sm:px-8 sm:py-3 text-fuchsia-700 whitespace-nowrap">Explore</span>
+        <span class="block rounded-xl bg-black/70 px-6 py-3 sm:px-8 sm:py-3 text-fuchsia-700 whitespace-nowrap">Explore</span>
       </a>
       <a href="#register"
          class="relative w-full sm:w-auto max-w-[220px] p-[2px] rounded-xl shadow-lg text-base sm:text-lg 
                 font-semibold transition transform hover:scale-110 bg-gradient-to-r from-fuchsia-500 via-purple-500 to-purple-500 
                 opacity-0 animate-bounceIn delay-700">
-        <span class="block rounded-xl bg-white/70 px-6 py-3 sm:px-8 sm:py-3 text-fuchsia-700 whitespace-nowrap">Register</span>
+        <span class="block rounded-xl bg-black/70 px-6 py-3 sm:px-8 sm:py-3 text-fuchsia-700 whitespace-nowrap">Register</span>
       </a>
     </div>
   </div>
 </section>
 
+
 <!-- Hero -->
-    <section id="explore" class="relative pt-28 overflow-hidden h-screen">
+  <section id="explore" class="relative pt-28 overflow-hidden h-screen">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="grid items-center gap-10 lg:grid-cols-2">
       
@@ -216,7 +223,7 @@
         </h1>
 
         <p class="mt-4 text-base text-neutral-600 dark:text-neutral-300 max-w-prose opacity-0 animate-fadeStagger">
-          Three days <span class="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-transparent animate-shimmer bg-[length:200%_auto]">(October 1,2 & 3)</span>.
+          Three days <span class="bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 bg-clip-text text-2xl text-transparent animate-shimmer bg-[length:200%_auto]">(October 9,10 & 11)</span>.
           Tons of tech & non-tech events. Win prizes, meet people, and flex your skills.  
           We’ve packed this with animations so it feels alive.
         </p>
@@ -243,7 +250,7 @@
           <p class="mt-2 text-sm text-neutral-700 leading-relaxed">Show up with your squad and ship something wild. We stan good demos.</p>
         </div>
 
-        <div class="origin-center rotate-[3deg] -translate-y-2 rounded-2xl border-2 border-purple-700/40 bg-white/90 p-6 shadow-lg animate-cardFlip delay-300">
+        <div class="origin-center rotate-[3deg] -translate-y-2 rounded-2xl border-2 border-purple-700/40 bg-white/70 p-6 shadow-lg animate-cardFlip delay-300">
           <p class="text-xs uppercase tracking-wide text-purple-800 font-semibold">Also Fun</p>
           <h3 class="mt-2 text-2xl font-extrabold text-purple-900">Treasure Hunt · Filmography · Photography</h3>
           <p class="mt-2 text-sm text-neutral-700 leading-relaxed">Not just code — come vibe, compete, and make memories.</p>
@@ -501,6 +508,29 @@
         }
       }, { threshold: 0.12 });
       document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+      document.addEventListener('DOMContentLoaded', () => {
+  const el = document.querySelector('.dept-heading');
+  if (!el) return;
+
+  // Auto-set number of characters (includes spaces)
+  const text = el.textContent.trim();
+  const chars = Math.max(1, text.length); // fallback to 1
+  el.style.setProperty('--chars', chars);
+
+  // If you want to change typing speed dynamically: el.style.setProperty('--typing-duration','3s');
+
+  // Respect prefers-reduced-motion (optional extra protection)
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) {
+    el.style.animation = 'none';
+    el.style.maxWidth = '100%';
+    el.style.transform = 'none';
+    el.style.opacity = '1';
+    const after = window.getComputedStyle(el, '::after');
+    // If needed, hide pseudo cursor via CSS fallback (already handled in CSS media query)
+  }
+});
     </script>
   </body>
 </html>
