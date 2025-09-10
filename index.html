@@ -161,45 +161,63 @@
 <section id="home" 
   class="relative flex flex-col items-center justify-center min-h-screen text-white text-center 
          bg-black/60 backdrop-blur-sm bg-cover bg-center bg-no-repeat 
-         px-4 sm:px-6 lg:px-12 py-10 overflow-hidden">
+         px-3 sm:px-6 lg:px-12 py-8 sm:py-12 lg:py-16 overflow-hidden">
 
-  <div class="z-10 max-w-4xl w-full">
-    <h1 class="laser-text text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-neonText px-2">
+  <div class="z-10 max-w-4xl w-full px-2 sm:px-4">
+    <!-- Main Heading -->
+    <h1 class="laser-text text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight animate-neonText px-1 sm:px-2">
       SPRING FEST'25 & ABLAZE'25
     </h1>
+
+    <!-- Department Name -->
     <h2
   class="dept-heading text-center 
-         text-base sm:text-xl md:text-2xl lg:text-3xl text-purple-400 mt-6 
-         px-2"
+         text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 
+         text-purple-400 mt-4 sm:mt-6 
+         px-2 leading-snug
+         hidden sm:block max-w-full"
   style="--chars:46; --typing-duration:4s;"
 >
   Department of Computer Science and Engineering
 </h2>
+<h2 id="deptHeading"
+    class="block sm:none display-block dept-heading text-center text-sm sm:text-lg md:text-xl lg:text-2xl text-purple-400 mt-4 px-2 leading-snug"
+    data-text="Department of Computer Science and Engineering">
+</h2>
 
 
-    <!-- Animated Sub Heading -->
-    <h2 class="text-base sm:text-xl md:text-2xl lg:text-3xl text-purple-400 mt-4 
-               opacity-0 animate-slideFadeUp delay-200">
+
+    <!-- Sub Heading -->
+    <h2 class="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-purple-400 mt-3 sm:mt-4 
+               opacity-0 animate-slideFadeUp delay-200 px-2">
       National Level Symposium 2025
     </h2>
 
     <!-- Buttons -->
-    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 lg:gap-8">
+    <div class="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 lg:gap-8 px-2">
       <a href="#explore"
-         class="relative w-full sm:w-auto max-w-[220px] p-[2px] rounded-xl shadow-lg text-base sm:text-lg 
-                font-semibold transition transform hover:scale-110 bg-gradient-to-r from-fuchsia-500 via-purple-500 to-purple-500 
+         class="relative w-full sm:w-auto max-w-[220px] p-[2px] rounded-xl shadow-lg 
+                text-sm sm:text-base md:text-lg font-semibold transition transform hover:scale-110 
+                bg-gradient-to-r from-fuchsia-500 via-purple-500 to-purple-500 
                 opacity-0 animate-bounceIn delay-500">
-        <span class="block rounded-xl bg-black/70 px-6 py-3 sm:px-8 sm:py-3 text-fuchsia-700 whitespace-nowrap">Explore</span>
+        <span class="block rounded-xl bg-black/70 px-5 py-2 sm:px-7 sm:py-3 text-fuchsia-700 whitespace-nowrap">
+          Explore
+        </span>
       </a>
+
       <a href="#register"
-         class="relative w-full sm:w-auto max-w-[220px] p-[2px] rounded-xl shadow-lg text-base sm:text-lg 
-                font-semibold transition transform hover:scale-110 bg-gradient-to-r from-fuchsia-500 via-purple-500 to-purple-500 
+         class="relative w-full sm:w-auto max-w-[220px] p-[2px] rounded-xl shadow-lg 
+                text-sm sm:text-base md:text-lg font-semibold transition transform hover:scale-110 
+                bg-gradient-to-r from-fuchsia-500 via-purple-500 to-purple-500 
                 opacity-0 animate-bounceIn delay-700">
-        <span class="block rounded-xl bg-black/70 px-6 py-3 sm:px-8 sm:py-3 text-fuchsia-700 whitespace-nowrap">Register</span>
+        <span class="block rounded-xl bg-black/70 px-5 py-2 sm:px-7 sm:py-3 text-fuchsia-700 whitespace-nowrap">
+          Register
+        </span>
       </a>
     </div>
   </div>
 </section>
+
 
 
 <!-- Hero -->
@@ -479,9 +497,7 @@
       </div>
     </footer>
 
-    <!-- Tiny JS for interactions -->
     <script>
-      // Splash fade out
       window.addEventListener('load', () => {
         const splash = document.getElementById('splash');
         setTimeout(() => {
@@ -490,7 +506,6 @@
         }, 600); 
       });
 
-      // Mobile nav toggle
       const mobileBtn = document.getElementById('mobileBtn');
       const mobileNav = document.getElementById('mobileNav');
       mobileBtn?.addEventListener('click', () => {
@@ -498,7 +513,6 @@
         mobileNav.style.maxHeight = open ? '0px' : mobileNav.scrollHeight + 'px';
       });
 
-      // Reveal on scroll
       const io = new IntersectionObserver((entries) => {
         for (const e of entries) {
           if (e.isIntersecting) {
@@ -513,14 +527,9 @@
   const el = document.querySelector('.dept-heading');
   if (!el) return;
 
-  // Auto-set number of characters (includes spaces)
   const text = el.textContent.trim();
-  const chars = Math.max(1, text.length); // fallback to 1
+  const chars = Math.max(1, text.length); 
   el.style.setProperty('--chars', chars);
-
-  // If you want to change typing speed dynamically: el.style.setProperty('--typing-duration','3s');
-
-  // Respect prefers-reduced-motion (optional extra protection)
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduced) {
     el.style.animation = 'none';
@@ -528,8 +537,51 @@
     el.style.transform = 'none';
     el.style.opacity = '1';
     const after = window.getComputedStyle(el, '::after');
-    // If needed, hide pseudo cursor via CSS fallback (already handled in CSS media query)
   }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const el = document.getElementById('deptHeading');
+  if (!el) return;
+
+  // Source text (prefer data-text so you can pre-load / SEO)
+  const fullText = el.dataset.text?.trim() || el.textContent.trim();
+  if (!fullText) return;
+
+  // Respect prefers-reduced-motion
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) {
+    el.textContent = fullText;
+    el.classList.add('enter', 'done');
+    return;
+  }
+
+  // Typing settings (tweak as needed)
+  const perCharMs = 35;           // ms per character (lower = faster)
+  const startDelay = 250;         // delay before typing starts
+
+  // Prepare
+  el.textContent = '';            // clear visible text
+  el.classList.add('enter', 'typing');
+
+  let i = 0;
+  const len = fullText.length;
+
+  function typeStep() {
+    i++;
+    el.textContent = fullText.slice(0, i);
+    if (i < len) {
+      // variable speed slight jitter to feel natural (optional)
+      const jitter = (Math.random() * 30) - 15; // -15..15ms
+      setTimeout(typeStep, Math.max(15, perCharMs + jitter));
+    } else {
+      // finished
+      el.classList.remove('typing');
+      el.classList.add('done');
+    }
+  }
+
+  setTimeout(typeStep, startDelay);
 });
     </script>
   </body>

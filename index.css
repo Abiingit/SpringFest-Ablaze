@@ -301,29 +301,22 @@ body{
 .neon-card.nontech { background: linear-gradient(90deg,#fb7185,#f97316,#f59e0b,#fb7185); }
 
 .dept-heading {
-  --chars: 46;                /* fallback, JS will override */
-  --typing-duration: 3s;      /* adjust typing speed here */
+  --chars: 46;                
+  --typing-duration: 3s;      
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
-  max-width: 0;               /* animated to show characters */
+  max-width: 0;               
   transform: translateY(20px);
   opacity: 0;
   position: relative;
-  /* three animations:
-     1) typing (controls max-width with steps -> per-char)
-     2) slideUp (quick slide-up & fade)
-     3) glow (starts after typing finishes)
-  */
   animation:
     typing var(--typing-duration) steps(var(--chars), end) infinite forwards,
     slideUp 0.6s cubic-bezier(.2,.8,.2,1) forwards,
     glow 2s ease-in-out calc(var(--typing-duration) + 0.15s) infinite alternate;
-  /* keep it above background visuals if needed */
-  z-index: 2;
+    z-index: 2;
 }
 
-/* CURSOR (pseudo element) */
 .dept-heading::after {
   content: "";
   display: inline-block;
@@ -332,13 +325,11 @@ body{
   height: 1.05em;
   margin-left: .45rem;
   background: currentColor;
-  /* blink while typing, then hide via hideCursor which runs after typing duration */
   animation:
     blink .8s steps(2, end) infinite,
     hideCursor .001s linear var(--typing-duration) forwards;
 }
 
-/* Keyframes */
 @keyframes typing {
   from { max-width: 0; }
   to   { max-width: calc(var(--chars) * 1ch); } 
@@ -354,13 +345,10 @@ body{
   50%,100% { opacity: 0; }
 }
 
-/* hideCursor runs instantly at the end of typing (because of the delay),
-   and sets visibility to hidden so the blinking stops visually */
 @keyframes hideCursor {
   to { opacity: 0; visibility: hidden; }
 }
 
-/* gentle neon glow after typing */
 @keyframes glow {
   0% {
     text-shadow: 0 0 6px rgba(168,85,247,0.55),
@@ -372,7 +360,6 @@ body{
   }
 }
 
-/* accessibility: reduce motion falls back to no animation */
 @media (prefers-reduced-motion: reduce) {
   .dept-heading {
     animation: none !important;
@@ -383,12 +370,53 @@ body{
   .dept-heading::after { display: none !important; }
 }
 
-/* optional tiny mobile tweak if you want even smaller text on very small screens */
-@media (max-width: 320px) {
-  .dept-heading { 
-  font-size: 0.95rem;
- }
+@media (max-width: 639px) {
+  .dept-heading {
+    animation: none !important;
+    max-width: 100% !important;
+    opacity: 1 !important;
+    transform: none !important;
+    white-space: normal !important; 
+  }
+  .dept-heading::after { display: none !important; }
 }
+
+/* .dept-heading.typing::after{
+  content: "";
+  display: inline-block;
+  vertical-align: bottom;
+  width: 2px;
+  height: 1.05em;
+  margin-left: .45rem;
+  background: currentColor;
+  animation: blink .8s steps(2,end) infinite;
+} */
+.dept-heading.done::after { display: none; }
+
+
+.dept-heading.done {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.dept-heading.enter {
+  transform: translateY(8px);
+  opacity: 0;
+  animation: slideUp .45s cubic-bezier(.2,.8,.2,1) forwards;
+}
+
+/* keyframes */
+@keyframes blink { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+@keyframes glow{
+  0% { text-shadow: 0 0 6px rgba(168,85,247,0.55); }
+  100% { text-shadow: 0 0 18px rgba(192,132,252,0.9); }
+}
+@keyframes slideUp {
+  from { transform: translateY(8px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+
+
 
 
 
